@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Reusing common styles from above... */
+        .login-card { background: white; width: 90%; max-width: 400px; padding: 30px; border-radius: 20px; margin: 20px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; }
+        .back-link { color: #666; text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; display: block; }
+        .hostel-selection { display: flex; gap: 10px; margin: 20px 0; }
+        .option { flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; text-align: center; cursor: pointer; }
+        .option.active { border-color: #3b82f6; color: #3b82f6; background: #f0f7ff; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 8px; }
+        .input-group input { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
+        .access-btn { width: 100%; background: #3b82f6; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 1rem; margin-top: 20px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <a href="#" class="back-link"> < Back to Selection</a>
+        <div style="text-align:center">
+            <div class="icon-box student-icon">👤</div>
+            <h2>Student Login</h2>
+            <p style="color:#666">Please enter your secure passcode</p>
+        </div>
+
+        <div class="input-group">
+            <label>Select Hostel Category</label>
+            <div class="hostel-selection">
+                <div class="option active">Boys Hostel</div>
+                <div class="option">Girls Hostel</div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Secure Passcode</label>
+            <input type="password" id="passcode" placeholder="Enter passcode">
+        </div>
+
+        <button class="access-btn">Access Portal</button>
+    </div>
+    
+    <button onclick="login()">Access Portal</button>
+    
+<script>
+function login() {
+  let pass = document.getElementById("passcode").value;
+
+  if(pass === "1234") {
+    window.location.href = "./student.html";
+  } else {
+    alert("Wrong Passcode ❌");
+  }
+}
+</script>
