@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Gatepass</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: gray;
+      font-size: 14px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #3b82f6;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #3b82f6;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Gatepass Form</h2>
+<p>Please fill all details correctly</p>
+
+<label>Full Name</label>
+<input type="text" id="name" placeholder="John Doe">
+
+<label>Mobile Number</label>
+<input type="text" id="phone" placeholder="9876543210">
+
+<label>Class/Semester</label>
+<input type="text" id="sem" placeholder="6th Sem">
+
+<label>Branch</label>
+<input type="text" id="branch" placeholder="CSE">
+
+<label>Hostel Name</label>
+<input type="text" id="hostel" placeholder="Boys Hostel">
+
+<label>Room Number</label>
+<input type="text" id="room" placeholder="101">
+
+<label>Duration</label>
+<input type="text" id="duration" placeholder="4 Hours">
+
+<label>Reason for Leave</label>
+<textarea id="reason" placeholder="Enter reason..."></textarea>
+
+<label>Upload Photo</label>
+<input type="file">
+
+<div id="recaptcha-container"></div>
+
+<button onclick="sendOTP()">Send OTP</button>
+
+<input type="text" id="otp" placeholder="Enter OTP">
+
+<button onclick="verifyOTP()">Verify & Submit</button>
+
+<p id="status"></p>
+
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+let confirmationResult;
+
+function sendOTP() {
+  let phone = "+91" + document.getElementById("phone").value;
+
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+
+<div id="recaptcha-container"></div>
+
+  firebase.auth().signInWithPhoneNumber(phone, window.recaptchaVerifier)
+  .then(res => {
+    confirmationResult = res;
+    document.getElementById("status").innerText = "OTP Sent ✅";
+  });
+}
+
+function verifyOTP() {
+  let code = document.getElementById("otp").value;
+
+  confirmationResult.confirm(code).then(() => {
+
+    db.collection("students").add({
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      sem: document.getElementById("sem").value,
+      branch: document.getElementById("branch").value,
+      hostel: document.getElementById("hostel").value,
+      room: document.getElementById("room").value,
+      duration: document.getElementById("duration").value,
+      reason: document.getElementById("reason").value,
+      time: new Date()
+    });
+
+    document.getElementById("status").innerText = "Submitted Successfully 🔥";
+
+  }).catch(()=>{
+    document.getElementById("status").innerText = "Invalid OTP ❌";
+  });
+}
+</script>
+
+</body>
+</html>
+
+<video id="video" width="100%" autoplay></video>
+<button onclick="capture()">Capture Face</button>
+<canvas id="canvas" style="display:none;"></canvas>
