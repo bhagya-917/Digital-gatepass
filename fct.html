@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Permission Requests</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      flex: 1;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .pending { color: orange; }
+    .approved { color: green; }
+    .rejected { color: red; }
+
+    .request {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .status.pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status.approved {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .details {
+      margin-top: 10px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 10px;
+      font-style: italic;
+      color: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Permission Requests</h1>
+  <p>Submit and track your outpass and leave requests for Girls Hostel</p>
+
+  <div class="cards">
+    <div class="card pending">
+      <h2>1</h2>
+      <p>Pending</p>
+    </div>
+    <div class="card approved">
+      <h2>1</h2>
+      <p>Approved</p>
+    </div>
+    <div class="card rejected">
+      <h2>0</h2>
+      <p>Rejected</p>
+    </div>
+  </div>
+
+  <!-- Request 1 -->
+  <div class="request">
+    <div class="header">
+      <div>
+        <div class="name">Priya Nair (1VT21EC045)</div>
+        <div>Family function - cousin's wedding</div>
+      </div>
+      <div class="status pending">Pending</div>
+    </div>
+    <div class="details">
+      📍 Mangalore <br>
+      📅 20 Mar – 22 Mar <br>
+      🏠 Room G-112
+    </div>
+  </div>
+
+  <!-- Request 2 -->
+  <div class="request">
+    <div class="header">
+      <div>
+        <div class="name">Sneha Kulkarni (1VT21IS078)</div>
+        <div>Technical Fest participation - Techzilla at BIT</div>
+      </div>
+      <div class="status approved">Approved</div>
+    </div>
+    <div class="details">
+      📍 BIT College, Belgaum <br>
+      📅 21 Mar <br>
+      🏠 Room G-204
+    </div>
+    <div class="footer">
+      Warden: "Approved. Return by 10 PM mandatory."
+    </div>
+  </div>
+
+</body>
+</html>
